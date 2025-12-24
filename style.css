@@ -32,3 +32,23 @@ body {
     color: #2c3e50;
     margin-bottom: 5px;
 }
+
+.stats {
+    display: flex;
+    justify-content: space-between;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.stat-number {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.stat-label {
+    color: #666;
+}
