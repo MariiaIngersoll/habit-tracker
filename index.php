@@ -10,16 +10,16 @@
     <div class="container">
         <!-- Шапка -->
         <header class="header">
-            <h1>📝 Трекер привычек</h1></div>
+            <h1>📝 Трекер привычек</h1>
         </header>
         <!-- Быстрая статистика -->
         <div class="stats">
             <div class="stat">
-                <div class="stat-number"></div>
+                <div class="stat-number">0</div>
                 <div class="stat-label">Всего</div>
             </div>
             <div class="stat">
-                <div class="stat-number"></div>
+                <div class="stat-number">0</div>
                 <div class="stat-label">Выполнено</div>
             </div>
             <div class="stat">
@@ -35,12 +35,13 @@
         <!-- Список привычек -->
         <div class="habit-list">
             <h3>Мои привычки на сегодня:</h3>
+            <br>
                 <div class="empty">
                     <p>📭 Список привычек пуст</p>
                     <p>Добавьте первую привычку выше</p>
                 </div>
 
-        <butt> Очистить все</butt>
+        <button class='btn-clear'> Очистить все</button>
 
         <footer style="margin-top: 40px; text-align: center; color: #777; font-size: 14px;">
             <p>Простой трекер привычек на день</p>

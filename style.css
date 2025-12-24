@@ -52,3 +52,18 @@ body {
 .stat-label {
     color: #666;
 }
+
+.habit-list {
+    color: #2c3e50;
+}
+
+.btn-clear {
+    padding: 5px 10px;
+    margin-top: 30px;
+    background: #a89e24;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
