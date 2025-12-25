@@ -31,6 +31,17 @@
         </div>
         
         <!-- Форма добавления новой привычки -->
+        <div class="add-form">
+            <h2 >🚀 Добавить привычку!</h2>
+            <form method="POST">
+                <input 
+                    type="text"
+                    name="new_habit"
+                    placeholder="Что ты хочешь сделать сегодня?"
+                    required autofocus>
+                <button type="submit">Добавить</button>
+            </form>
+        </div>
 
         <!-- Список привычек -->
         <div class="habit-list">
