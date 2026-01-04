@@ -1,3 +1,10 @@
+<?php
+
+require_once 'config.php';
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -33,7 +40,7 @@
         <!-- Форма добавления новой привычки -->
         <div class="add-form">
             <h2 >🚀 Добавить привычку!</h2>
-            <form method="POST">
+            <form action="formhandler.php" method="POST">
                 <input 
                     type="text"
                     name="new_habit"
