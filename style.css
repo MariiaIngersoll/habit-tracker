@@ -92,7 +92,7 @@ body {
     border-radius: 4px;
     cursor: pointer;
 }
-/* .btn-clear {
+.btn-clear {
     padding: 5px 10px;
     margin-top: 30px;
     background: #a89e24;
@@ -101,4 +101,4 @@ body {
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
-} */
+}
