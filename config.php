@@ -1,5 +1,8 @@
 <?php
 
+ini_set('session.use_only_cookies', 1); // Использовать ТОЛЬКО куки для хранения ID сессии. 1 - значит true
+ini_set('session.use_strict_mode', 1); //PHP будет проверять, что ID сессии существует и действителен. Нельзя придумать свой ID
+
 
 session_start();
 
