@@ -14,6 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['new_habit'])) {
             'completed_today' => false
         ];
 
+        $_SESSION['message'] = "Привычка добавлена!";
+        $_SESSION['message_type'] = 'success';
+        
         header('Location: index.php');
         exit;
     }

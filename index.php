@@ -20,6 +20,18 @@ require_once 'config.php';
             <h1>📝 Трекер привычек</h1>
             <p>Сегодня: <?php echo $today_formatted ?></p>
         </header>
+
+        <!-- Сообщения -->
+        <?php if (isset($_SESSION['message'])): ?>
+            <div class="message <?php echo $_SESSION['message_type']; ?>">
+                <?php 
+                echo $_SESSION['message'];
+                unset($_SESSION['message']);
+                unset($_SESSION['message_type']);
+                ?>
+            </div>
+        <?php endif; ?>
+
         <!-- Быстрая статистика -->
         <div class="stats">
             <div class="stat">
