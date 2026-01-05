@@ -18,6 +18,7 @@ require_once 'config.php';
         <!-- Шапка -->
         <header class="header">
             <h1>📝 Трекер привычек</h1>
+            <p>Сегодня: <?php echo $today_formatted ?></p>
         </header>
         <!-- Быстрая статистика -->
         <div class="stats">

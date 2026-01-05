@@ -1,0 +1,20 @@
+<?php
+
+require_once 'config.php';
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['new_habit'])) {
+    $habitName = trim($_POST['new_habit']);
+
+    if (!empty($habitName)) {
+        $_SESSION['habits'][] = [
+            'id' => uniqid(),
+            'name' => htmlspecialchars($habitName),
+            'created' => $today,
+            'completed_today' => false
+        ];
+
+        header('Location: index.php');
+        exit;
+    }
+}

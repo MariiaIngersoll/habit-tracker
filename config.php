@@ -13,6 +13,12 @@ session_set_cookie_params([
 
 session_start();
 
+
+// Сегодняшняя дата
+$today = date('Y-m-d');
+$today_formatted = date('d.m.Y');
+
+
 if (!isset($_SESSION['last_regeneration'])) {
 
     session_regenerate_id(true);
@@ -27,3 +33,8 @@ if (!isset($_SESSION['last_regeneration'])) {
     }
 }
 
+// Инициализация пустого массива привычек
+
+if (!isset($_SESSION['habits'])) {
+    $_SESSION['habits'] = [];
+}
