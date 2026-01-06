@@ -64,13 +64,24 @@ require_once 'config.php';
         </div>
 
         <!-- Список привычек -->
+        
         <div class="habit-list">
             <h3>Мои привычки на сегодня:</h3>
             <br>
+            <?php if (empty($_SESSION['habits'])): ?> 
                 <div class="empty">
                     <p>📭 Список привычек пуст</p>
                     <p>Добавьте первую привычку выше</p>
                 </div>
+                <?php else: ?>
+                    <ul class="habits-list">
+                        <?php foreach($_SESSION['habits'] as $habit): ?>
+                                <li class='habit-item'>
+                                <?php echo htmlspecialchars($habit['name']); ?>
+                                </li>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
 
         <button class='btn-clear'> Очистить все</button>
 
