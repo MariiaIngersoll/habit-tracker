@@ -61,9 +61,39 @@ body {
     text-align: center;
 }
 
-.habit-list {
-    color: #2c3e50;
+/* .habit-name {
+    flex: 1;
+    font-size: 16px;
+} */
+
+.empty {
+    text-align: center;
+    padding: 40px 20px;
+    color: #888;
 }
+
+.empty p {
+    margin-bottom: 10px;
+} 
+
+.habit-list {
+    text-align: center;
+    color: #2c3e50;
+    text-align: center;
+}
+
+.habit-name {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: white;
+    transition: all 0.2s;
+
+}
+
 
 .add-form {
     background: #f8f9fa;
@@ -100,13 +130,30 @@ body {
     border-radius: 4px;
     cursor: pointer;
 }
-.btn-clear {
-    padding: 5px 10px;
+
+.clear-section {
+    text-align: center;
     margin-top: 30px;
-    background: #a89e24;
-    color: white;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 25px;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    text-decoration: none;
+    font-size: 1em;
     cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-red {
+    background-color:#ff9800;
+    color: white;
+}
+
+.btn-red:hover {
+    background-color: #d2a96e;
 }
