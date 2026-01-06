@@ -3,7 +3,7 @@
 require_once 'config.php';
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['new_habit'])) {
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_habit'])) {
     $habitName = trim($_POST['new_habit']);
 
     if (!empty($habitName)) {

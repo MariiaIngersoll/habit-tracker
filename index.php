@@ -79,17 +79,18 @@ require_once 'config.php';
                                 <?php echo htmlspecialchars($habit['name']); ?>
                             </div>
                         <?php endforeach; ?>
+        <!-- Кнопка очистки -->
+                <div class="clear-section">
+                    <form method="POST" action="clear.php" onsubmit="return confirm('Удалить ВСЕ привычки?')">
+                        <button type="submit" class="btn btn-red">
+                            🗑️ Очистить все
+                        </button>
+                    </form>
+                </div>
             <?php endif; ?>
 
-            <!-- Кнопка очистки -->
-            <div class="clear-section">
-                <form method="POST" action="clear.php" onsubmit="return confirm('Удалить ВСЕ привычки?')">
-                    <button type="submit" class="btn btn-red">
-                        🗑️ Очистить все
-                    </button>
-                </form>
-            </div>
 
+        </div>                        
         <footer style="margin-top: 40px; text-align: center; color: #777; font-size: 14px;">
             <p>Простой трекер привычек на день</p>
         </footer>
