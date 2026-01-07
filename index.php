@@ -89,7 +89,7 @@ require_once 'config.php';
                             </div>
 
                             <!-- Кнопка удаления отдельной привычки -->
-                            <a href="delete.php?id=<?php echo $index; ?>" 
+                            <a href="delete_habit.php?id=<?php echo $index; ?>" 
                             class="btn btn-delete btn-small"
                             onclick="return confirm('Удалить эту привычку?')">
                                 Удалить
