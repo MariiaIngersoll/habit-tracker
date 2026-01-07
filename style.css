@@ -61,11 +61,6 @@ body {
     color: chocolate;
 }
 
-/* .habit-name {
-    flex: 1;
-    font-size: 16px;
-} */
-
 .empty {
     text-align: center;
     padding: 40px 20px;
@@ -77,12 +72,12 @@ body {
 } 
 
 .habit-list {
-    text-align: center;
     color: #2c3e50;
     text-align: center;
+    margin-top: 20px;
 }
 
-.habit-name {
+.habit-item {
     display: flex;
     align-items: center;
     padding: 15px;
@@ -91,8 +86,23 @@ body {
     margin-bottom: 10px;
     background: white;
     transition: all 0.2s;
-
 }
+
+.habit-name {
+    flex: 1;
+    font-size: 16px;
+}
+
+.habit-completed .habit-name {
+    color: #4CAF50;
+    text-decoration: line-through;
+}
+
+
+.habit-item:hover {
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
 
 
 .add-form {
@@ -131,13 +141,6 @@ body {
     cursor: pointer;
 }
 
-.clear-section {
-    text-align: center;
-    margin-top: 30px;
-    padding-top: 20px;
-    border-top: 1px solid #eee;
-}
-
 .btn {
     display: inline-block;
     padding: 10px 25px;
@@ -149,11 +152,11 @@ body {
     transition: background-color 0.3s;
 }
 
-.btn-red {
+.btn-delete {
     background-color:#ff9800;
     color: white;
 }
 
-.btn-red:hover {
+.btn-delete:hover {
     background-color: #d2a96e;
 }

@@ -74,23 +74,38 @@ require_once 'config.php';
                     <p>Добавьте первую привычку выше</p>
                 </div>
                 <?php else: ?>
-                        <?php foreach($_SESSION['habits'] as $habit): ?>
+                    <?php foreach($_SESSION['habits'] as $index => $habit): ?>
+                        <div class="habit-item <?php echo $habit['completed_today'] ? 'habit-completed' : ''; ?>">
+                            <!-- Чекбокс -->
+                            <a href="toggle.php?id=<?php echo $index; ?>">
+                                <?php if ($habit['completed_today']): ?>
+                                    <span style="color: #4CAF50; font-size: 24px; margin-right: 15px;">✅</span>
+                                <?php else: ?>
+                                    <span sryle="color: #ccc; font-size:24px; margin-right: 15px;">⬜</span>
+                                <?php endif; ?>
+                            </a>
                             <div class="habit-name" >
                                 <?php echo htmlspecialchars($habit['name']); ?>
                             </div>
-                        <?php endforeach; ?>
-        <!-- Кнопка очистки -->
-                <div class="clear-section">
-                    <form method="POST" action="clear.php" onsubmit="return confirm('Удалить ВСЕ привычки?')">
-                        <button type="submit" class="btn btn-red">
-                            🗑️ Очистить все
-                        </button>
-                    </form>
-                </div>
+
+                            <!-- Кнопка удаления отдельной привычки -->
+                            <a href="delete.php?id=<?php echo $index; ?>" 
+                            class="btn btn-delete btn-small"
+                            onclick="return confirm('Удалить эту привычку?')">
+                                Удалить
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
             <?php endif; ?>
-
-
-        </div>                        
+        </div>
+        <!-- Кнопка очистки всех -->
+        <form style="text-align: center;" action="clear_all.php" method="POST">
+            <button type="submit" 
+                    class="btn btn-delete"
+                    onclick="return confirm('Удалить ВСЕ привычки?')">
+                🗑️ Очистить все
+            </button>
+        </form>                 
         <footer style="margin-top: 40px; text-align: center; color: #777; font-size: 14px;">
             <p>Простой трекер привычек на день</p>
         </footer>
