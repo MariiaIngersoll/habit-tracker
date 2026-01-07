@@ -95,17 +95,18 @@ require_once 'config.php';
                                 Удалить
                             </a>
                         </div>
+                            <!-- Кнопка очистки всех -->
+
                     <?php endforeach; ?>
+                                        <form style="text-align: center;" action="clear_all.php" method="POST">
+                        <button type="submit" 
+                                class="btn btn-delete"
+                                onclick="return confirm('Удалить ВСЕ привычки?')">
+                            🗑️ Очистить все
+                        </button>
+                    </form>  
             <?php endif; ?>
-        </div>
-        <!-- Кнопка очистки всех -->
-        <form style="text-align: center;" action="clear_all.php" method="POST">
-            <button type="submit" 
-                    class="btn btn-delete"
-                    onclick="return confirm('Удалить ВСЕ привычки?')">
-                🗑️ Очистить все
-            </button>
-        </form>                 
+        </div>               
         <footer style="margin-top: 40px; text-align: center; color: #777; font-size: 14px;">
             <p>Простой трекер привычек на день</p>
         </footer>
