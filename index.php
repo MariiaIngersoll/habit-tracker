@@ -2,6 +2,21 @@
 
 require_once 'config.php';
 
+// Считаем сколько привычек в массиве
+$total = count($_SESSION['habits']);
+$completed = 0;
+
+// Считаем сколько привычек выполнено
+foreach ($_SESSION['habits'] as $habit) {
+    if (isset($habit['completed_today']) && $habit['completed_today']) {
+        $completed++;
+    }
+}
+
+//процент выполнения
+$percent = $total > 0 ? round(($completed / $total) * 100) : 0;
+
+
 ?>
 
 
@@ -25,9 +40,9 @@ require_once 'config.php';
         <?php if (isset($_SESSION['message'])): ?>
             <div class="message <?php echo $_SESSION['message_type']; ?>">
                 <?php 
-                echo $_SESSION['message'];
-                unset($_SESSION['message']);
-                unset($_SESSION['message_type']);
+                    echo $_SESSION['message'];
+                    unset($_SESSION['message']);
+                    unset($_SESSION['message_type']);
                 ?>
             </div>
         <?php endif; ?>
@@ -35,16 +50,16 @@ require_once 'config.php';
         <!-- Быстрая статистика -->
         <div class="stats">
             <div class="stat">
-                <div class="stat-number">0</div>
+                <div class="stat-number"><?php echo $total; ?></div>
                 <div class="stat-label">Всего</div>
             </div>
             <div class="stat">
-                <div class="stat-number">0</div>
+                <div class="stat-number"><?php echo $completed; ?></div>
                 <div class="stat-label">Выполнено</div>
             </div>
             <div class="stat">
                 <div class="stat-number">
-                    %
+                    <?php echo $percent; ?>%
                 </div>
                 <div class="stat-label">Прогресс</div>
             </div>
@@ -90,23 +105,24 @@ require_once 'config.php';
 
                             <!-- Кнопка удаления отдельной привычки -->
                             <a href="delete_habit.php?id=<?php echo $index; ?>" 
-                            class="btn btn-delete btn-small"
+                            class="btn btn-delete-single"
                             onclick="return confirm('Удалить эту привычку?')">
                                 Удалить
                             </a>
                         </div>
-                            <!-- Кнопка очистки всех -->
-
+                        
+                    <!-- Кнопка очистки всех -->
                     <?php endforeach; ?>
-                                        <form style="text-align: center;" action="clear_all.php" method="POST">
+                    <form style="text-align: center;" action="clear_all.php" method="POST">
                         <button type="submit" 
-                                class="btn btn-delete"
+                                class="btn btn-delete-all"
                                 onclick="return confirm('Удалить ВСЕ привычки?')">
                             🗑️ Очистить все
                         </button>
                     </form>  
             <?php endif; ?>
-        </div>               
+        </div>      
+
         <footer style="margin-top: 40px; text-align: center; color: #777; font-size: 14px;">
             <p>Простой трекер привычек на день</p>
         </footer>
