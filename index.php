@@ -2,13 +2,16 @@
 
 require_once 'config.php';
 
+//Загружаем привычки из БД
+$habits = get_all_habits();
+
 // Считаем сколько привычек в массиве
-$total = count($_SESSION['habits']);
+$total = count($habits);
 $completed = 0;
 
 // Считаем сколько привычек выполнено
-foreach ($_SESSION['habits'] as $habit) {
-    if (isset($habit['completed_today']) && $habit['completed_today']) {
+foreach ($habits as $habit) {
+    if ($habit['is_completed'] == 1) {
         $completed++;
     }
 }
@@ -50,11 +53,15 @@ $percent = $total > 0 ? round(($completed / $total) * 100) : 0;
         <!-- Быстрая статистика -->
         <div class="stats">
             <div class="stat">
-                <div class="stat-number"><?php echo $total; ?></div>
+                <div class="stat-number">
+                    <?php echo $total; ?>
+                </div>
                 <div class="stat-label">Всего</div>
             </div>
             <div class="stat">
-                <div class="stat-number"><?php echo $completed; ?></div>
+                <div class="stat-number">
+                    <?php echo $completed; ?>
+                </div>
                 <div class="stat-label">Выполнено</div>
             </div>
             <div class="stat">
@@ -83,17 +90,17 @@ $percent = $total > 0 ? round(($completed / $total) * 100) : 0;
         <div class="habit-list">
             <h3>Мои привычки на сегодня:</h3>
             <br>
-            <?php if (empty($_SESSION['habits'])): ?> 
+            <?php if (empty($habits)): ?> 
                 <div class="empty">
                     <p>📭 Список привычек пуст</p>
                     <p>Добавьте первую привычку выше</p>
                 </div>
                 <?php else: ?>
-                    <?php foreach($_SESSION['habits'] as $index => $habit): ?>
-                        <div class="habit-item <?php echo $habit['completed_today'] ? 'habit-completed' : ''; ?>">
+                    <?php foreach($habits as $index => $habit): ?>
+                        <div class="habit-item <?php echo $habit['is_completed'] ? 'habit-completed' : ''; ?>">
                             <!-- Чекбокс -->
                             <a href="toggle.php?id=<?php echo $index; ?>">
-                                <?php if ($habit['completed_today']): ?>
+                                <?php if ($habit['is_completed']): ?>
                                     <span style="color: #4CAF50; font-size: 24px; margin-right: 15px;">✅</span>
                                 <?php else: ?>
                                     <span sryle="color: #ccc; font-size:24px; margin-right: 15px;">⬜</span>

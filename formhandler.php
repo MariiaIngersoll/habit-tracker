@@ -7,12 +7,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['new_habit'])) {
     
     if (!empty($habitName)) {
         // Добавляем привычку
-        $_SESSION['habits'][] = [
-            'id' => uniqid(),
-            'name' => htmlspecialchars($habitName),
-            'created' => date('Y-m-d'),
-            'completed_today' => false
-        ];
+        $newHabit = add_new_habit($habitName);
         
         $_SESSION['message'] = "Привычка '$habitName' добавлена!";
         $_SESSION['message_type'] = 'success';
