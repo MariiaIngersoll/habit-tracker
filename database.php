@@ -1,30 +1,30 @@
 <?php
-// database.php - подключение к базе данных MySQL
 
 // 1. Настройки базы данных
-$db_host = '127.0.0.1';     // адрес сервера
-$db_name = 'habit_tracker'; // имя базы данных
-$db_user = 'root';          // имя пользователя
-$db_pass = '';              // пароль (пустой для XAMPP)
+$db_host = '127.0.0.1';     
+$db_name = 'habit_tracker'; 
+$db_user = 'root';          
+$db_pass = '';              
 
-// 2. Функция подключения к базе
+// Глобальная переменная для хранения подключения
+$pdo_connection = null;
+
 function connect_to_db() {
-    // Берем настройки из переменных выше
-    global $db_host, $db_name, $db_user, $db_pass;
+    global $pdo_connection, $db_host, $db_name, $db_user, $db_pass;
     
-    // Строка подключения
+    // Если подключение уже есть - возвращаем его
+    if ($pdo_connection !== null) {
+        return $pdo_connection;
+    }
+    
     $dsn = "mysql:host=$db_host;dbname=$db_name;charset=utf8mb4";
     
     try {
-        // Пробуем подключиться
-        $pdo = new PDO($dsn, $db_user, $db_pass);
+        $pdo_connection = new PDO($dsn, $db_user, $db_pass);
+        $pdo_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         
-        // Настраиваем чтобы ошибки показывались
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        return $pdo; // Возвращаем подключение
+        return $pdo_connection;
     } catch (PDOException $e) {
-        // Если ошибка - показываем и останавливаем скрипт
         die("Ошибка подключения к базе: " . $e->getMessage());
     }
 }
@@ -33,11 +33,23 @@ function connect_to_db() {
 function get_all_habits() {
     $pdo = connect_to_db();
     
-    // Выполняем SQL запрос
     $sql = "SELECT * FROM habits ORDER BY created_at DESC";
     $stmt = $pdo->query($sql);
     
-    // Получаем все записи как массив
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
-var_dump(get_all_habits());
+
+function add_new_habit($habit_name) {
+    $pdo = connect_to_db();
+    $sql = "INSERT INTO habits (name) VALUES (?)";
+    $stmt = $pdo->prepare($sql);
+
+    $stmt->execute([$habit_name]);
+
+    return $pdo->lastInsertId();
+}
+
+// function delete_all() {
+//     $pdo = connect_to_db();
+//     $pdo->exec("DELETE FROM habits");
+// }
