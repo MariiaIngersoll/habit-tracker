@@ -49,6 +49,30 @@ function add_new_habit($habit_name) {
     return $pdo->lastInsertId();
 }
 
+function toggle_habit_completion($id) {
+    $pdo = connect_to_db();
+    $sql = "SELECT is_completed FROM habits WHERE id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$id]);
+    $habit = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$habit) {
+        return false;
+    }
+
+    //  меняем статус привычки на противоположный с не выполнено на выполнлено
+    $new_status = $habit['is_completed'] ? 0 : 1;
+
+    // Обновляем в БД
+    $sql = "UPDATE habits SET is_completed = ? where id = ?";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([$new_status, $id]);
+
+    return $new_status;
+}
+
+
+
 // function delete_all() {
 //     $pdo = connect_to_db();
 //     $pdo->exec("DELETE FROM habits");
