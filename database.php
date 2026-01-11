@@ -73,7 +73,15 @@ function toggle_habit_completion($id) {
 
 
 
-// function delete_all() {
-//     $pdo = connect_to_db();
-//     $pdo->exec("DELETE FROM habits");
-// }
+function clear_all_habits() {
+    $pdo = connect_to_db();
+
+    try {
+        $sql = "DELETE FROM habits";
+        $stmt = $pdo->prepare($sql);
+        return $stmt->execute(); 
+    } catch (PDOException $e) {
+        error_log("Ошибка при очистке привычек: " . $e->getMessage());
+        return false;  
+    }
+}
