@@ -96,14 +96,14 @@ $percent = $total > 0 ? round(($completed / $total) * 100) : 0;
                     <p>Добавьте первую привычку выше</p>
                 </div>
                 <?php else: ?>
-                    <?php foreach($habits as $index => $habit): ?>
+                    <?php foreach($habits as $habit): ?>
                         <div class="habit-item <?php echo $habit['is_completed'] ? 'habit-completed' : ''; ?>">
                             <!-- Чекбокс -->
-                            <a href="toggle.php?id=<?php echo $index; ?>">
+                            <a href="toggle.php?id=<?php echo $habit['id']; ?>">
                                 <?php if ($habit['is_completed']): ?>
                                     <span style="color: #4CAF50; font-size: 24px; margin-right: 15px;">✅</span>
                                 <?php else: ?>
-                                    <span sryle="color: #ccc; font-size:24px; margin-right: 15px;">⬜</span>
+                                    <span style="color: #ccc; font-size:24px; margin-right: 15px;">⬜</span>
                                 <?php endif; ?>
                             </a>
                             <div class="habit-name" >
@@ -111,7 +111,7 @@ $percent = $total > 0 ? round(($completed / $total) * 100) : 0;
                             </div>
 
                             <!-- Кнопка удаления отдельной привычки -->
-                            <a href="delete_habit.php?id=<?php echo $index; ?>" 
+                            <a href="delete_habit.php?id=<?php echo $habit['id']; ?>" 
                             class="btn btn-delete-single"
                             onclick="return confirm('Удалить эту привычку?')">
                                 Удалить
